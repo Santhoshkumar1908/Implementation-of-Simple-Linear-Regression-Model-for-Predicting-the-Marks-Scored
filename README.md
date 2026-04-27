@@ -64,7 +64,5 @@ plt.show()
 ~~~
 ## Output:
 ![WhatsApp Image 2026-04-27 at 9 48 07 PM](https://github.com/user-attachments/assets/cf18db4d-76db-4236-a30d-3d377269fb46)
-
-
 ## Result:
 Thus the program to implement the simple linear regression model for predicting the marks scored is written and verified using python programming.
