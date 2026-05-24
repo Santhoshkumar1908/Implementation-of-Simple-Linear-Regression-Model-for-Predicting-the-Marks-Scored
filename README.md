@@ -74,6 +74,7 @@ print(f"\nPredicted marks for {hours} hours of study = {predicted_marks[0]:.2f}"
 
 ~~~
 ## Output:
-![WhatsApp Image 2026-04-27 at 9 48 07 PM](https://github.com/user-attachments/assets/cf18db4d-76db-4236-a30d-3d377269fb46)
+<img width="504" height="590" alt="image" src="https://github.com/user-attachments/assets/9390c4bc-1f99-464c-8601-576e6ee1af3b" />
+
 ## Result:
 Thus the program to implement the simple linear regression model for predicting the marks scored is written and verified using python programming.
