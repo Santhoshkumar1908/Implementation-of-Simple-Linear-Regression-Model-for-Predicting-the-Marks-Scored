@@ -24,43 +24,54 @@ RegisterNumber: 212225230249
 
 ```
 ~~~
+
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+data = {
+    "Hours_Studied": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "Marks_Scored":  [35, 40, 50, 55, 60, 65, 70, 80, 85, 95]
+}
+df = pd.DataFrame(data)
 
-# Sample data
+# Display dataset
+print("Dataset:\n", df.head())
+df
+X = df[["Hours_Studied"]]   
+y = df["Marks_Scored"]      
 
-X = np.array([1, 2, 3, 4, 5]).reshape(-1, 1)
-Y = np.array([35, 50, 65, 70, 85])
-
-# Create model
+# Step 4: Train-test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
 model = LinearRegression()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
 
-# Train model
-model.fit(X, Y)
 
-# Get slope and intercept
-m = model.coef_[0]
-b = model.intercept_
+print("\nModel Parameters:")
+print("Intercept (b0):", model.intercept_)
+print("Slope (b1):", model.coef_[0])
 
-print("Slope (m):", m)
-print("Intercept (b):", b)
-
-# ---- Prediction ----
-x_input = float(input("Enter hours studied: "))
-predicted_marks = model.predict([[x_input]])
-print("Predicted Marks:", predicted_marks[0])
-
-# ---- Plot ----
-Y_pred = model.predict(X)
-
-plt.scatter(X, Y, label="Actual Data")
-plt.plot(X, Y_pred, label="Regression Line")
+print("\nEvaluation Metrics:")
+print("Mean Squared Error:", mean_squared_error(y_test, y_pred))
+print("R² Score:", r2_score(y_test, y_pred))
+plt.figure(figsize=(8,6))
+plt.scatter(X, y, color='blue', label="Actual Data")
+plt.plot(X, model.predict(X), color='red', linewidth=2, label="Regression Line")
 plt.xlabel("Hours Studied")
 plt.ylabel("Marks Scored")
-plt.title("Simple Linear Regression (Using sklearn)")
+plt.title("Simple Linear Regression: Predicting Marks")
 plt.legend()
+plt.grid(True)
 plt.show()
+hours = 7.5
+predicted_marks = model.predict([[hours]])
+print(f"\nPredicted marks for {hours} hours of study = {predicted_marks[0]:.2f}")
+
 ~~~
 ## Output:
 ![WhatsApp Image 2026-04-27 at 9 48 07 PM](https://github.com/user-attachments/assets/cf18db4d-76db-4236-a30d-3d377269fb46)
